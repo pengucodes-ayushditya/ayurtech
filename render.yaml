@@ -1,0 +1,23 @@
+# Free Docker web service; PostgreSQL is provisioned separately on Neon.
+services:
+  - type: web
+    name: ayurtech
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    autoDeployTrigger: checksPass
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: APP_ENV
+        value: production
+      - key: COOKIE_SECURE
+        value: 'true'
+      - key: APP_TIMEZONE
+        value: Asia/Kolkata
+      - key: PORT
+        value: '10000'
+# ALLOWED_ORIGINS defaults to Render's trusted RENDER_EXTERNAL_URL.
+# Set ALLOWED_ORIGINS explicitly if adding a custom domain.

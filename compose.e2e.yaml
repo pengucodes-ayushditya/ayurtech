@@ -1,0 +1,12 @@
+# Use with compose.yaml and project name ayurtech-e2e; fictional verification records only.
+services:
+  db:
+    environment:
+      POSTGRES_DB: ayurtech_e2e_test
+  app:
+    image: ayurtech-verified:local
+    ports: !override
+      - '127.0.0.1:8001:8000'
+    environment:
+      DATABASE_URL: postgresql+psycopg://ayurtech:${POSTGRES_PASSWORD}@db:5432/ayurtech_e2e_test
+      ALLOWED_ORIGINS: http://127.0.0.1:8001,http://localhost:8001

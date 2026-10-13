@@ -1,0 +1,24 @@
+# Disposable verification stack, separate from the normal app/database.
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: ayurtech
+      POSTGRES_PASSWORD: verification-only
+      POSTGRES_DB: ayurtech_test
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U ayurtech -d ayurtech_test]
+      interval: 3s
+      timeout: 5s
+      retries: 20
+  verify:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+psycopg://ayurtech:verification-only@db:5432/ayurtech_test
+      TEST_DATABASES: both
+      APP_ENV: development
+      APP_TIMEZONE: Asia/Kolkata
+    depends_on:
+      db:
+        condition: service_healthy
+    command: [sh, -c, 'alembic upgrade head && alembic check && python -m app.seed && python -m pytest -q']
