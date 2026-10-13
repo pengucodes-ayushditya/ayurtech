@@ -14,6 +14,10 @@
 - Both Python and frontend dependency audits reported **zero known advisories** at verification time. Vitest was upgraded to 4.1.11 after test-tool advisories were detected. Package audits are not a substitute for a security review.
 - Normal, isolated verification, and HTTP-test Compose configurations validate.
 
+## Passed on GitHub Actions
+
+- [Verification run](https://github.com/pengucodes-ayushditya/ayurtech/actions/runs/38419096721) passed on the published source commit `d1d611f`: backend tests/migrations, frontend tests/build, PostgreSQL integration, and Docker builds plus HTTP persistence/backup checks.
+
 ## Cloud preparation
 
 - Dedicated Neon project created in Singapore with PostgreSQL 17 and 0.25 CU compute allocation.
@@ -25,7 +29,6 @@
 
 - Render deployment and live Neon connectivity/migrations.
 - HTTPS browser checks and production secure-cookie behavior.
-- GitHub Actions execution after source publication.
 - Production load/capacity testing, distributed rate limiting, password recovery/MFA, email delivery, automated backup schedules, monitoring and clinical validation.
 
 The Starlette test client reports one deprecation warning about its httpx backend. Tests pass without suppressing the warning. Vite/Vitest use native configuration loading to avoid a config-loading hang observed in the authoring environment.

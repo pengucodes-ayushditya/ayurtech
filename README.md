@@ -99,7 +99,7 @@ pnpm run build
 
 `test_postgres.py` skips unless `DATABASE_URL` points at an isolated PostgreSQL database whose name contains `_test`. CI creates that database, applies migrations, seeds foods, and tests the save/publish workflow. Never point test infrastructure at real patient data.
 
-Verified: 53 backend checks passed inside Docker across SQLite/PostgreSQL, 3 frontend tests passed, and the production bundle and migrations passed. External HTTP and browser workflows, app/database restarts, and backup restoration were verified. Dependency audits reported zero known advisories after updating the test tooling. Cloud deployment and GitHub Actions remain pending. See `docs/VERIFICATION.md` for the exact scope.
+Verified: 53 backend checks passed inside Docker across SQLite/PostgreSQL, 3 frontend tests passed, and the production bundle and migrations passed. External HTTP and browser workflows, app/database restarts, and backup restoration were verified. Dependency audits reported zero known advisories after updating the test tooling. All four [GitHub Actions jobs](https://github.com/pengucodes-ayushditya/ayurtech/actions/runs/38419096721) passed: backend, frontend, PostgreSQL, and Docker end-to-end verification. Cloud deployment remains pending. See `docs/VERIFICATION.md` for the exact scope.
 
 ## Verify the Docker/PostgreSQL implementation
 

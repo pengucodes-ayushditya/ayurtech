@@ -4,7 +4,7 @@ Selected deployment: free Render Docker web service plus Neon PostgreSQL. The so
 
 ## Source and CI
 
-Publish the source on GitHub, run GitHub Actions, deploy, and verify the live app. Hosting deployment is separate from source publication. Never commit `.env`, database dumps, API tokens, session cookies, or database connection strings.
+The source is published at https://github.com/pengucodes-ayushditya/ayurtech. Run GitHub Actions, deploy, and verify the live app. Hosting deployment is separate from source publication. Never commit `.env`, database dumps, API tokens, session cookies, or database connection strings.
 
 The tracked `render.yaml` declares a free service and uses `autoDeployTrigger: checksPass`. The Docker build includes frontend tests and bundling; startup applies migrations, seeds only reference foods, and starts the API on the assigned `PORT`.
 
@@ -42,7 +42,7 @@ Render's free web service sleeps after inactivity; its first request may take ti
 4. Confirm wrong-role and cross-clinic requests are rejected. Verify CSRF and unapproved-origin rejection.
 5. Restart/redeploy the service and confirm records remain in Neon.
 6. Run `python scripts/verify_http.py --base-url https://YOUR-DEPLOYMENT` for the reusable HTTP smoke flow. This creates clearly named fictional test records. Do not pass `--docker-checks` for a cloud URL.
-7. Confirm GitHub Actions passes and add the actual live URL to README before public publication.
+7. Confirm GitHub Actions passes and add the actual live URL to README after the live checks pass.
 
 ## Reproduce Docker persistence and restore checks locally
 
